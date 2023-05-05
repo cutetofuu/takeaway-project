@@ -1,4 +1,4 @@
-from lib.order_meal import OrderMeal
+from lib.order_meal import *
 from lib.dishes import Dishes
 from lib.dish import Dish
 
@@ -79,3 +79,23 @@ def test_returns_total_price_given_4_dishes_with_3_selected():
     dish_2.select_dish()
     order_meal.add_dishes(dishes)
     assert order_meal.total_price() == 13.50
+
+"""
+Given a list of three dishes
+with two dishes being selected
+#place_order sends a text message 
+to the verified mobile number
+"""
+def test_sends_text_message_given_3_dishes_with_2_selected():
+    order_meal = OrderMeal()
+    dishes = Dishes()
+    dish_5 = Dish("Spring rolls", 2.00)
+    dish_6 = Dish("Hunter's chicken", 3.75)
+    dish_2 = Dish("Chicken tikka", 4.25)
+    dishes.add(dish_5)
+    dishes.add(dish_6)
+    dishes.add(dish_2)
+    dish_6.select_dish()
+    dish_2.select_dish()
+    order_meal.add_dishes(dishes)
+    assert order_meal.place_order(phone_num_to) == "Your message has been sent." 

@@ -110,3 +110,4 @@ def test_returns_total_price_given_4_mock_dishes_with_3_selected():
 
     order_meal.add_dishes(dishes)
     assert order_meal.total_price() == 9.85
+
