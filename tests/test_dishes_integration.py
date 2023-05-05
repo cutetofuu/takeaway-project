@@ -13,4 +13,4 @@ def test_returns_list_with_3_dishes_given_3_dishes():
     dishes.add(dish_1)
     dishes.add(dish_2)
     dishes.add(dish_3)
-    assert dishes.all() == ["Chicken adobo, £4.50", "Spring rolls, £2.00", "Pancit bihon, £3.75"]
+    assert dishes.all() == [dish_1, dish_2, dish_3]

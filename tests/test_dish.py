@@ -48,3 +48,28 @@ def test_returns_price_given_name_and_price():
     dish = Dish("Chicken adobo", 4.50)
     assert dish.price == 4.50
     assert type(dish.price) == float
+
+"""
+Given a name and a price
+Returns the dish's selected status as False
+"""
+def test_returns_selected_as_false_given_name_and_price():
+    dish = Dish("English breakfast", 5.00)
+    assert dish.selected == False
+
+"""
+Given a name and a price
+#select_dish changes the dish's selected status to True
+"""
+def test_select_dish_returns_selected_as_true_given_name_and_price():
+    dish = Dish("Toad in the hole", 3.50)
+    dish.select_dish()
+    assert dish.selected == True
+
+"""
+Given a name and a price
+#format returns the name and price as a formatted string
+"""
+def test_format_returns_string_given_name_and_price():
+    dish = Dish("Chicken tikka", 3.00)
+    assert dish.format() == "Chicken tikka, £3.00"
