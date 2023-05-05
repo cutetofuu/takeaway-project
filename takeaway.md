@@ -55,7 +55,7 @@ that? How will you keep that information out of your repository?
      │                    │
      │  - name            │
      │  - price           │
-     │  - selected        │
+     │  - select_dish()   │
      │  - format()        │
      │                    │
      └────────────────────┘
@@ -130,7 +130,7 @@ class Dish:
         #   Sets the name, price and selected properties
         pass # No code here yet
 
-    def selected(name):
+    def select_dish(name):
         # Parameters:
         #   name: string representing the name of the dish
         # Side-effects:
@@ -191,13 +191,23 @@ a more granular level of detail._
 ```python
 
 """
-Given empty strings for the name and price
+Given an empty string for the name
 Raises an error
 """
 with pytest.raises(Exception) as err:
-    dish = Dish("", "")
-error.message = str(err.value)
-error.message # => "You haven't added a dish."
+    dish = Dish("", 2.00)
+error_message = str(err.value)
+error_message # => "Please add the correct details."
+
+"""
+Given a value of zero for the price
+Raises an error
+"""
+with pytest.raises(Exception) as err:
+    dish = Dish("Cottage pie", 0.00)
+error_message = str(err.value)
+error_message # => "Please add the correct details."
+
 
 """
 Given a name and a price
