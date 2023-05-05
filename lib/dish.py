@@ -6,20 +6,8 @@ class Dish:
         self.price = price
         self.selected = False
 
-    def select_dish(name):
-        # Parameters:
-        #   name: string representing the name of the dish
-        # Side-effects:
-        #   changes the selected property's value to True
-        # Returns:
-        #   none
-        pass # No code here yet
+    def select_dish(self):
+        self.selected = True
 
     def format(self):
-        # Parameters:
-        #   none
-        # Side-effects:
-        #   none
-        # Returns:
-        #   a string displaying the name and price of a dish
-        pass # No code here yet
+        return f'{self.name}, £{"%.2f" % self.price}'

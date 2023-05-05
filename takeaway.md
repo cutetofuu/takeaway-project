@@ -33,7 +33,8 @@ that? How will you keep that information out of your repository?
   ┌────────────────────────────┐
   │  OrderMeal                 │
   │                            │
-  │  - selected_dishes(dishes) │
+  │  - add_dishes(dishes)      │
+  │  - view_order()            │
   │  - total_price()           │
   │  - place_order()           │
   │                            │
@@ -67,13 +68,27 @@ _Also design the interface of each class in more detail._
 ```python
 
 class OrderMeal:
-    def selected_dishes(dishes):
+    def __init__(self):
+        # Side-effects:
+        #   Sets the _selected_dishes properties
+        pass # No code here yet
+
+    def add_dishes(self, dishes):
         # Parameters:
-        #   dishes: a list of all the Dish objects
+        #   dishes: an instance of the Dishes class
+        # Side-effects:
+        #   Adds a list of dishes to the _selected_dishes list
+        # Returns:
+        #   a list of all the selected Dish objects
+        pass # No code here yet
+
+    def view_order(self):
+        # Parameters:
+        #   none
         # Side-effects:
         #   none
         # Returns:
-        #   a list of all the selected Dish objects
+        #   none
         pass # No code here yet
 
     def total_price(self):
@@ -103,7 +118,7 @@ class Dishes:
 
     def add(self, dish):
         # Parameters:
-        #   dish: an instance of Dish
+        #   dish: an instance of the Dish class
         # Side-effects:
         #   Adds the dish to the dishes property of the self object
         # Returns:
@@ -130,9 +145,9 @@ class Dish:
         #   Sets the name, price and selected properties
         pass # No code here yet
 
-    def select_dish(name):
+    def select_dish(self):
         # Parameters:
-        #   name: string representing the name of the dish
+        #   none
         # Side-effects:
         #   changes the selected property's value to True
         # Returns:

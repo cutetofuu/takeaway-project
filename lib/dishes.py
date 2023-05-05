@@ -6,5 +6,5 @@ class Dishes:
         self._dishes.append(dish)
 
     def all(self):
-        view_dishes = list(map(lambda dish: f'{dish.name}, £{"%.2f" % dish.price}', self._dishes))
-        return view_dishes
+        return self._dishes
+    
