@@ -1,4 +1,5 @@
-from lib.order_meal import OrderMeal
+import pytest
+from lib.order_meal import *
 from unittest.mock import Mock
 
 """
@@ -111,3 +112,79 @@ def test_returns_total_price_given_4_mock_dishes_with_3_selected():
     order_meal.add_dishes(dishes)
     assert order_meal.total_price() == 9.85
 
+"""
+Given a list of three dishes
+with no dishes being selected
+#place_order raises an error
+"""
+def test_raises_error_given_3_mock_dishes_with_none_selected():
+    order_meal = OrderMeal()
+
+    dish_2 = Mock()
+    dish_2.selected = False
+
+    dish_7 = Mock()
+    dish_7.selected = False
+
+    dish_4 = Mock()
+    dish_4.selected = False
+
+    dishes = Mock()
+    dishes.all.return_value = [dish_2, dish_7, dish_4]
+
+    order_meal.add_dishes(dishes)
+    with pytest.raises(Exception) as err:
+        order_meal.place_order(phone_num_to)
+    error_message = str(err.value)
+    assert error_message == "You have not selected a dish."
+
+"""
+Given a list of three dishes
+with two dishes being selected
+#place_order sends a text message 
+to the verified mobile number
+"""
+def test_sends_text_message_given_3_mock_dishes_with_2_selected():
+    order_meal = OrderMeal()
+
+    dish_8 = Mock()
+    dish_8.selected = True
+
+    dish_3 = Mock()
+    dish_3.selected = True
+
+    dish_5 = Mock()
+    dish_5.selected = False
+
+    dishes = Mock()
+    dishes.all.return_value = [dish_8, dish_3, dish_5]
+
+    order_meal.add_dishes(dishes)
+    assert order_meal.place_order(phone_num_to) == "Your message has been sent." 
+
+"""
+Given a list of three dishes
+with two dishes being selected
+and an unverified mobile number
+#place_order raises an error
+"""
+def test_raises_error_given_unverified_number_3_mock_dishes_with_2_selected():
+    order_meal = OrderMeal()
+
+    dish_2 = Mock()
+    dish_2.selected = False
+
+    dish_7 = Mock()
+    dish_7.selected = True
+
+    dish_4 = Mock()
+    dish_4.selected = True
+
+    dishes = Mock()
+    dishes.all.return_value = [dish_2, dish_7, dish_4]
+
+    order_meal.add_dishes(dishes)
+    with pytest.raises(Exception) as err:
+        order_meal.place_order("+4445248590")
+    error_message = str(err.value)
+    assert error_message == "This number is unverified."
